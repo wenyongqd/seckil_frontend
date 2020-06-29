@@ -66,20 +66,21 @@ export default {
   methods: {
     register(formName) {
       
-      
       var self = this;
       self.$refs[formName].validate((valid) => {
          if (valid) {
            alert("可以注册")
-           this.axios.post('/api/registerAPI',JSON.stringify({
-             username: this.user.username,
-             password: this.$md5(this.user.password + 'springboot')
+           self.axios.post('/api/registerAPI',JSON.stringify({
+             username: self.user.username,
+             password: self.$md5(self.user.password + 'springboot')
            }), {
             headers: {
               'Content-Type': 'application/json'
             }
            })
                .then((response) => {
+                 debugger;
+            self.$message.success(response.data.message)
              console.log(response.data)
              self.$router.push('/login');
            })

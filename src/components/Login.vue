@@ -48,6 +48,7 @@ export default {
 
            self.$store.dispatch('login', {username: self.user.username, password: self.user.password})
            .then((response) => {
+             debugger;
              self.$message.success(response.data.message)
              self.$router.push('/home/course/list');
            })
