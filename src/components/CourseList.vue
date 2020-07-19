@@ -1,20 +1,20 @@
 <template>
   <div id="course-list">
-    <h1>所有课程</h1>
+    <h1>All Courses</h1>
     <el-row class="list-filter">
       <!-- tab 切换 -->
       <el-col>
         <!-- 通过class绑定实现切换 -->
         <el-button :class="courseType == 0 ? 'el-button--primary' : 'el-button--text'"
-                     size="mini" round @click="changeCourseType(0)">全部课程</el-button>
+                     size="mini" round @click="changeCourseType(0)">All Courses</el-button>
           <el-button :class="courseType == 1 ? 'el-button--primary' : 'el-button--text'"
-                     size="mini" round @click="changeCourseType(1)" >自然科学</el-button>
+                     size="mini" round @click="changeCourseType(1)" >Natural Science</el-button>
           <el-button :class="courseType == 2 ? 'el-button--primary' : 'el-button--text'"
-                     size="mini" round @click="changeCourseType(2)">园艺栽培</el-button>
+                     size="mini" round @click="changeCourseType(2)">Gardening Cultivation</el-button>
           <el-button :class="courseType == 3 ? 'el-button--primary' : 'el-button--text'"
-                     size="mini" round @click="changeCourseType(3)">创意绘画</el-button>
+                     size="mini" round @click="changeCourseType(3)">Creatice Paintings</el-button>
           <el-button :class="courseType == 4 ? 'el-button--primary' : 'el-button--text'"
-                     size="mini" round @click="changeCourseType(4)">摄影技巧</el-button>
+                     size="mini" round @click="changeCourseType(4)">Photography Technique</el-button>
       </el-col>
     </el-row>
     <el-row :gutter="30">

@@ -5,8 +5,8 @@
         <div class="main-menu">
           <a href="/"><img class="logo" src="../assets/images/logo.png" alt="秒杀logo" /></a>
           <el-menu :default-active="$route.path" mode="horizontal" router>
-            <el-menu-item index="/home/course/list">课程列表</el-menu-item>
-            <el-menu-item index="/home/order/list">订单列表</el-menu-item>
+            <el-menu-item index="/home/course/list">Courses</el-menu-item>
+            <el-menu-item index="/home/order/list">Orders</el-menu-item>
           </el-menu>
         </div>
         <div id="user-setting">
@@ -14,7 +14,7 @@
           <el-menu mode="horizontal">
             <el-submenu index="1">
               <template slot="title">{{getUsername}}</template>
-              <el-menu-item index="1-1" >退出</el-menu-item>
+              <el-menu-item index="1-1" >Logout</el-menu-item>
             </el-submenu>
           </el-menu>
         </div>
@@ -25,7 +25,7 @@
         </div>
       </el-main>
       <el-footer>
-        版权所有 &copy; 2018 实训邦
+        All rights reserved. &copy; 2020 WENYONG PERSONAL WEBSITE
       </el-footer>
     </el-container>
   </div>

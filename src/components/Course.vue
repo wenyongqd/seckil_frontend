@@ -1,12 +1,12 @@
 <template>
   <div id="course" v-loading.fullscreen.lock="load"
-       element-loading-text="秒杀排队中"
+       element-loading-text="You are lining up..."
        element-loading-background="rgba(0, 0, 0, 0.8)">
       <!-- 面包屑导航 -->
     <div>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item to="/home/course/list">首页</el-breadcrumb-item>
-        <el-breadcrumb-item to="/home/course/list">课程列表</el-breadcrumb-item>
+        <el-breadcrumb-item to="/home/course/list">Index</el-breadcrumb-item>
+        <el-breadcrumb-item to="/home/course/list">Courses</el-breadcrumb-item>
         <el-breadcrumb-item>{{course.courseName}}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
@@ -40,7 +40,7 @@
               <!-- 讲师头像div -->
               <img src="../assets/images/sam.png"></img>
               <!-- 讲师姓名 -->
-              <span>讲师: {{course.teacherName}}</span>
+              <span>Lecturor: {{course.teacherName}}</span>
             </div>
             <!-- 右下课程信息div-->
             <div class="detail-info">
@@ -50,24 +50,24 @@
                 <el-button id="book-btn" type="info" v-if="showButtonType == 0"
                         ref="book" :class="isBookButtonDisabled ? '' : 'el-button--primary'" :disabled="isBookButtonDisabled"
                         @click="book">
-                  <span>立即报名</span>
+                  <span>Buy now</span>
                 </el-button>
                 <router-link to="/home/order/list"><el-button type="info" v-if="showButtonType == 1" class="el-button--primary" id="trun-btn" >
-                  <span>查看订单</span>
+                  <span>My courses</span>
                 </el-button></router-link>
                 <el-button type="info" disabled v-if="showButtonType == 2" ><!----><!---->
-                  <span>课程售罄</span>
+                  <span>Sold out</span>
                 </el-button>
                 <el-button type="info" disabled v-if="showButtonType == 3" ><!----><!---->
-                  <span>已结束</span>
+                  <span>Course end</span>
                 </el-button>
               </div>
               <!-- 课程时间、描述div -->
               <div class="">
                 <br/>
-                <p>课程编号: {{course.courseNo}}<br/></p>
-                <p>课程开始时间: {{course.startTime | date-format}}<br/></p>
-                <p>课程结束时间: {{course.endTime | date-format}}<br/><br/></p>
+                <p>Course #: {{course.courseNo}}<br/></p>
+                <p>Start at: {{course.startTime | date-format}}<br/></p>
+                <p>End at: {{course.endTime | date-format}}<br/><br/></p>
                 <p>{{course.courseDesciption}}</p>
               </div>
             </div>
@@ -96,7 +96,7 @@ export default {
         "courseType": 0,
         "coursePic": ""
       },
-      courseTimerStatus: '距离开课时间还有 1天20小时20分钟30秒',
+      courseTimerStatus: 'The next date on this course 1Day20hours20minutes30m',
       timer: null,
       isTimerStop: true,
       showButtonType: 0,
@@ -128,11 +128,11 @@ export default {
             self.getResult(response)
           })
           .catch(function (error) {
-            self.$message.error('出错')
+            self.$message.error('errors')
           });
        })
        .catch(function (error) {
-         self.$message.error('出错')
+         self.$message.error('errors')
        });
     },
     getResult(response) {
@@ -177,7 +177,7 @@ export default {
           self.$message.error(response.data.message);
           break;
         default:
-          self.$message.error('出错')
+          self.$message.error('errors')
           self.load = false;
           break;
       }
@@ -197,24 +197,24 @@ export default {
           self.isBookButtonDisabled = true;
           self.startTimer()
         } else {
-          self.courseTimerStatus = '已售罄';
+          self.courseTimerStatus = 'End';
           self.showButtonType = 2;
         }
       }
       // 2. 课程开始时间后，结束前
       else if(startTime <= currentTime && endTime > currentTime) {
         if (course.stockQuantity > 0) {
-          self.courseTimerStatus = '开始报名';
+          self.courseTimerStatus = 'Buy now';
           self.showButtonType = 0;
           self.isBookButtonDisabled = false;
         } else {
-          self.courseTimerStatus = '已售罄';
+          self.courseTimerStatus = 'Sold out';
           self.showButtonType = 2;
         }
       }
       // 3. 课程结束后
       else {
-        self.courseTimerStatus = '已结束';
+        self.courseTimerStatus = 'End';
         self.showButtonType = 3;
       }
 
@@ -237,7 +237,7 @@ export default {
       var hours = parseInt(leftTime / (24 * 60) % 24)
       var mins = parseInt(leftTime / 60 % 60)
       var sec = parseInt(leftTime % 60)
-      self.courseTimerStatus = `距离开课时间还有 ${days}天${hours}小时${mins}分钟${sec}秒`
+      self.courseTimerStatus = `The next date on this course ${days} days ${hours} hours ${mins} minutes ${sec} seconds`
       if (leftTime <= 0) {
         self.isTimerStop = true;
       }

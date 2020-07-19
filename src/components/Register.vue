@@ -4,19 +4,19 @@
     <div id="register">
       <el-form label-position="top" label-width="80px" :model="user"
        :rules="rules" ref="ruleForm">
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="user.username" placeholder="请输用户名  "></el-input>
+        <el-form-item label="Username" prop="username">
+          <el-input v-model="user.username" placeholder="Please input your username  "></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="user.password" placeholder="请输密码  "></el-input>
+        <el-form-item label="Password" prop="password">
+          <el-input type="password" v-model="user.password" placeholder="Please input your password  "></el-input>
         </el-form-item>
-        <el-form-item label="确认密码" prop="repassword">
-          <el-input type="password" v-model="user.repassword" placeholder="请确认密码  "></el-input>
+        <el-form-item label="Confirm password" prop="repassword">
+          <el-input type="password" v-model="user.repassword" placeholder="please confirm your password  "></el-input>
         </el-form-item>
-        <el-button class="submit-btn" type="primary" @click="register('ruleForm')">注册</el-button>
+        <el-button class="submit-btn" type="primary" @click="register('ruleForm')">Register</el-button>
       </el-form>
 
-      <router-link to="/login"><el-button type="text" icon="el-icon-edit">去登录页</el-button></router-link>
+      <router-link to="/login"><el-button type="text" icon="el-icon-edit">Login</el-button></router-link>
     </div>
   </portal-template>
 </template>
@@ -43,18 +43,18 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       rules: {
         username: [
-           { required: true, message: '请输入用户名', trigger: 'blur' }
+           { required: true, message: 'Please input your username', trigger: 'blur' }
          ],
          password: [
-          { required: true, message: '请输入密码 ', trigger: 'blur' }
+          { required: true, message: 'Please input your password ', trigger: 'blur' }
         ],
         repassword: [
-         { required: true, message: '请确认密码 ', trigger: 'blur' },
+         { required: true, message: 'Please confirm password ', trigger: 'blur' },
          { validator: (rule, value, callback) => {
             if (value === '') {
-              callback(new Error('请再次输入密码'));
+              callback(new Error('Please confirm password again'));
             } else if (value !== this.user.password) {
-              callback(new Error('两次输入密码不一致!'));
+              callback(new Error('The passwords are not equal!'));
             } else {
               callback();
             }
@@ -69,7 +69,7 @@ export default {
       var self = this;
       self.$refs[formName].validate((valid) => {
          if (valid) {
-           alert("可以注册")
+           alert("Success!")
            self.axios.post('/api/registerAPI',JSON.stringify({
              username: self.user.username,
              password: self.$md5(self.user.password + 'springboot')

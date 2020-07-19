@@ -3,15 +3,15 @@
     <div id="login">
       <el-form label-position="top" label-width="80px" :model="user"
        :rules="rules" ref="ruleForm">
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="user.username" placeholder="请输用户名  "></el-input>
+        <el-form-item label="Username" prop="username">
+          <el-input v-model="user.username" placeholder="Please input your username.  "></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="user.password" placeholder="请输密码  "></el-input>
+        <el-form-item label="Password" prop="password">
+          <el-input type="password" v-model="user.password" placeholder="Please input your password.  "></el-input>
         </el-form-item>
-        <el-button class="submit-btn" type="primary" @click="login('ruleForm')">登录</el-button>
+        <el-button class="submit-btn" type="primary" @click="login('ruleForm')">Login</el-button>
       </el-form>
-      <router-link to="/registerAPI"><el-button type="text" icon="el-icon-edit">去注册页</el-button></router-link>
+      <router-link to="/registerAPI"><el-button type="text" icon="el-icon-edit">Sign Up</el-button></router-link>
     </div>
   </portal-template>
 </template>
@@ -32,10 +32,10 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       rules: {
         username: [
-           { required: true, message: '请输入用户名', trigger: 'blur' }
+           { required: true, message: 'Please input your username.', trigger: 'blur' }
          ],
          password: [
-          { required: true, message: '请输入密码 ', trigger: 'blur' }
+          { required: true, message: 'Please input your password. ', trigger: 'blur' }
         ]
       }
     }

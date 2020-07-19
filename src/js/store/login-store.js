@@ -33,7 +33,7 @@ export default {
          })
          .catch(function (error) {
            var errorData = {
-             message: '系统出错'
+             message: 'System errors'
            }
            error.data = errorData
            reject(error)
